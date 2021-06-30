@@ -27,14 +27,14 @@ class SiteImage {
         nextImageDirection: Direction.Right,
       ),
       SiteImage(
-        title: 'Main Entrance Gate',
+        title: 'Entrance',
         imageAddress: 'assets/images/tuf/1.ground_floor/1.entrance/1F.jpeg',
         galleryIndex: 0,
         imageIndexInCurrentGallery: 1,
         nextImageDirection: Direction.Forward,
       ),
       SiteImage(
-        title: 'Main Entrance Front View',
+        title: 'Main Gate',
         imageAddress: 'assets/images/tuf/1.ground_floor/1.entrance/2F.jpeg',
         galleryIndex: 0,
         imageIndexInCurrentGallery: 2,

@@ -30,6 +30,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+    - assets/images/
     - assets/images/tuf/1.ground_floor/1.entrance/
     - assets/images/tuf/1.ground_floor/2.student_affairs/
     - assets/images/tuf/1.ground_floor/3.conference_room/

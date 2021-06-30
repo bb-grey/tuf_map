@@ -104,152 +104,162 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: [
-            AnimatedSwitcher(
-              duration: Duration(milliseconds: 500),
-              child: _bgImageContainer,
-            ),
-            GradientAppBar(),
-            Positioned(
-              child: Text(
-                _getCurrentGalleryImages().elementAt(_currentImageNumber).title,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+        body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage('assets/images/blur.jpg'),
+            // fit: BoxFit.contain,
+            fit: BoxFit.fitHeight,
+          )),
+          child: Stack(
+            children: [
+              AnimatedSwitcher(
+                duration: Duration(milliseconds: 500),
+                child: _bgImageContainer,
               ),
-              top: 100,
-              left: 10,
-            ),
-            Positioned(
-              bottom: 120,
-              left: 0,
-              right: 0,
-              child: Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    child: Center(
-                      child: InkWell(
-                        onTap: _incrementImage,
-                        child: (_currentImageNumber <
-                                _getCurrentGalleryImages().length - 1)
-                            ? Image.asset(
-                                _getNextImageDirectionIcon(),
-                                width: 60.0,
-                              )
-                            : Container(),
+              GradientAppBar(),
+              Positioned(
+                child: Text(
+                  _getCurrentGalleryImages()
+                      .elementAt(_currentImageNumber)
+                      .title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                top: 100,
+                left: 10,
+              ),
+              Positioned(
+                bottom: 120,
+                left: 0,
+                right: 0,
+                child: Column(
+                  children: [
+                    Container(
+                      width: double.infinity,
+                      child: Center(
+                        child: InkWell(
+                          onTap: _incrementImage,
+                          child: (_currentImageNumber <
+                                  _getCurrentGalleryImages().length - 1)
+                              ? Image.asset(
+                                  _getNextImageDirectionIcon(),
+                                  width: 60.0,
+                                )
+                              : Container(),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    child: _currentImageNumber > 0
-                        ? Center(
-                            child: InkWell(
-                              onTap: _decrementImage,
-                              child: Image.asset(
-                                'assets/icons/icon_bottom.png',
-                                width: 60.0,
+                    Container(
+                      width: double.infinity,
+                      child: _currentImageNumber > 0
+                          ? Center(
+                              child: InkWell(
+                                onTap: _decrementImage,
+                                child: Image.asset(
+                                  'assets/icons/icon_bottom.png',
+                                  width: 60.0,
+                                ),
                               ),
-                            ),
-                          )
-                        : Text(''),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                height: 120.0,
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: <Color>[
-                      kDefaultGradeintColor2,
-                      kDefaultGradeintColor1,
-                    ],
-                  ),
+                            )
+                          : Text(''),
+                    ),
+                  ],
                 ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return GalleryImagesList(
-                                onPressed: (index) {
-                                  Navigator.pop(context);
-                                  setState(() {
-                                    _changeGallery(index);
-                                  });
-                                },
-                              );
-                            },
-                          );
-                        },
-                        child: Text(
-                          '${Gallery.getGalleries().elementAt(_currentGalleryNumber).title} ↓',
-                          style: TextStyle(
-                            fontSize: 26.0,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
+              ),
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: 120.0,
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: <Color>[
+                        kDefaultGradeintColor2,
+                        kDefaultGradeintColor1,
+                      ],
+                    ),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) {
+                                return GalleryImagesList(
+                                  onPressed: (index) {
+                                    Navigator.pop(context);
+                                    setState(() {
+                                      _changeGallery(index);
+                                    });
+                                  },
+                                );
+                              },
+                            );
+                          },
+                          child: Text(
+                            '${Gallery.getGalleries().elementAt(_currentGalleryNumber).title} ↓',
+                            style: TextStyle(
+                              fontSize: 26.0,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(width: 20.0),
-                    Container(
-                      width: 36.0,
-                      height: 36.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 1.0),
-                      ),
-                      child: InkWell(
-                        onTap: _incrementGallery,
-                        child: Icon(
-                          Icons.arrow_right_alt,
-                          color: Colors.white,
+                      SizedBox(width: 20.0),
+                      Container(
+                        width: 36.0,
+                        height: 36.0,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 1.0),
                         ),
+                        child: InkWell(
+                          onTap: _incrementGallery,
+                          child: Icon(
+                            Icons.arrow_right_alt,
+                            color: Colors.white,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Container(
+                  margin: EdgeInsets.only(right: 20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FadedButton(
+                        onTap: _launchSite,
+                        icon: FontAwesomeIcons.mapMarkedAlt,
                       ),
-                    )
-                  ],
+                      SizedBox(height: 8.0),
+                      FadedButton(
+                        onTap: _launchSite,
+                        icon: FontAwesomeIcons.glasses,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Container(
-                margin: EdgeInsets.only(right: 20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    FadedButton(
-                      onTap: _launchSite,
-                      icon: FontAwesomeIcons.mapMarkedAlt,
-                    ),
-                    SizedBox(height: 8.0),
-                    FadedButton(
-                      onTap: _launchSite,
-                      icon: FontAwesomeIcons.glasses,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
