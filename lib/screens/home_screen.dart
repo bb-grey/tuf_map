@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:panorama/panorama.dart';
 import 'package:tuf_map/constants.dart';
 import 'package:tuf_map/models/gallery.dart';
 import 'package:tuf_map/models/site_image.dart';
@@ -251,7 +252,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       SizedBox(height: 8.0),
                       FadedButton(
-                        onTap: _launchSite,
+                        onTap: () {
+                          if (_currentImage.image360 != null) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return Dialog(
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.7,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                    ),
+                                    child: Panorama(
+                                      child: Image.asset(
+                                        _currentImage.image360,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }
+                        },
                         icon: FontAwesomeIcons.glasses,
                       ),
                     ],

@@ -8,13 +8,14 @@ class SiteImage {
   final int galleryIndex;
   final int imageIndexInCurrentGallery;
   final Direction nextImageDirection;
-
+  final String image360;
   SiteImage({
     @required this.title,
     @required this.imageAddress,
     @required this.galleryIndex,
     @required this.imageIndexInCurrentGallery,
     this.nextImageDirection,
+    this.image360,
   });
 
   static List<SiteImage> getSiteImages() {
@@ -32,6 +33,7 @@ class SiteImage {
         galleryIndex: 0,
         imageIndexInCurrentGallery: 1,
         nextImageDirection: Direction.Forward,
+        image360: 'assets/images/tuf/1.ground_floor/1.entrance/1_360.jpg',
       ),
       SiteImage(
         title: 'Main Gate',
@@ -46,6 +48,7 @@ class SiteImage {
         galleryIndex: 0,
         imageIndexInCurrentGallery: 3,
         nextImageDirection: Direction.Forward,
+        image360: 'assets/images/tuf/1.ground_floor/1.entrance/2_360.jpg',
       ),
       SiteImage(
         title: 'Balcony',
@@ -107,6 +110,7 @@ class SiteImage {
         galleryIndex: 3,
         imageIndexInCurrentGallery: 0,
         nextImageDirection: Direction.Forward,
+        image360: 'assets/images/tuf/1.ground_floor/4.library/5_360.jpg',
       ),
       SiteImage(
         title: 'Library Main View',
@@ -268,6 +272,8 @@ class SiteImage {
         galleryIndex: 8,
         imageIndexInCurrentGallery: 0,
         nextImageDirection: Direction.Forward,
+        image360:
+            'assets/images/tuf/4.second_floor/makhtar_auditorium/3_360.jpg',
       ),
       SiteImage(
         title: 'Title Sheet',
@@ -299,6 +305,7 @@ class SiteImage {
         galleryIndex: 9,
         imageIndexInCurrentGallery: 0,
         nextImageDirection: Direction.Right,
+        image360: 'assets/images/tuf/ground/4_360.jpg',
       ),
       SiteImage(
         title: 'Uni Back View',
