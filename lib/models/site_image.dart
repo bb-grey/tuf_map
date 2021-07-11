@@ -9,6 +9,7 @@ class SiteImage {
   final int imageIndexInCurrentGallery;
   final Direction nextImageDirection;
   final String image360;
+  final String sound;
   SiteImage({
     @required this.title,
     @required this.imageAddress,
@@ -16,6 +17,7 @@ class SiteImage {
     @required this.imageIndexInCurrentGallery,
     this.nextImageDirection,
     this.image360,
+    this.sound,
   });
 
   static List<SiteImage> getSiteImages() {
@@ -26,6 +28,7 @@ class SiteImage {
         galleryIndex: 0,
         imageIndexInCurrentGallery: 0,
         nextImageDirection: Direction.Right,
+        sound: 'assets/audios/tuf.mp3',
       ),
       SiteImage(
         title: 'Entrance',

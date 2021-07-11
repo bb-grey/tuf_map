@@ -21,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   SiteImage _currentImage = SiteImage.getSiteImages()[0];
   Container _bgImageContainer;
   AudioPlayer _player;
-  bool _isFirstImage = true;
 
   @override
   void initState() {
@@ -55,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_currentImageNumber < _getCurrentGalleryImages().length - 1) {
       await _stopPlayer();
       setState(() {
-        _isFirstImage = false;
         _currentImageNumber++;
         _changeCurrentImage();
         _bgImageContainer = Container(
@@ -115,16 +113,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return direction;
   }
 
-  Future<void> _playSound() async {
-    await _player.setAsset('assets/audios/tuf.mp3');
+  Future<void> _playSound(sound) async {
+    await _player.setAsset(sound);
     _player.play();
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_isFirstImage) {
-      _playSound();
-    }
     _bgImageContainer = Container(
       key: UniqueKey(),
       width: double.infinity,
@@ -308,6 +303,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           }
                         },
                         icon: FontAwesomeIcons.glasses,
+                      ),
+                      SizedBox(height: 8.0),
+                      FadedButton(
+                        onTap: () {
+                          if (_currentImage.sound != null) {
+                            _playSound(_currentImage.sound);
+                          }
+                        },
+                        icon: FontAwesomeIcons.music,
                       ),
                     ],
                   ),
